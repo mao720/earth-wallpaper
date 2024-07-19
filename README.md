@@ -32,6 +32,15 @@ Download the APK file from release-android and install it directly. (In order fo
 
 http://himawari8.nict.go.jp
 
+
+## 注意事项 Tips
+
+图片只有 550 * 500 像素，不是非常清晰，但基本够用。<br>
+The image has only 550 * 500 pixels, which is not very clear, but it is basically sufficient.<br>
+
+为了防止数据来源压力过大，实际下载的图片来自个人网盘，会尽量一直支持访问，但不保证此项目后续完全可用。<br>
+In order to prevent excessive pressure on data sources, the actual downloaded images are from personal cloud storage, and I will try my best to always support access, but I cannot guarantee that this project will be fully available in the future.
+
 ## 联系方式 Contact me
 
 Email: 1009935357@qq.com (同时也是 QQ 号)
