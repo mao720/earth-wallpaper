@@ -15,4 +15,4 @@ Set real-time photos of the Eastern Hemisphere of the Earth as wallpapers for bo
 
 ## Android
 
-![Alt text](/files/earth-android.png)
+![Alt text](/files/earth-android.jpg)
