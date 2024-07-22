@@ -29,17 +29,17 @@ class AlarmReceiver : BroadcastReceiver() {
             val bitmap = BitmapFactory.decodeStream(inputStream)
             inputStream.close()
 
-            if (bitmap.allocationByteCount < 50 * 1000) {
+            if (bitmap.allocationByteCount < 40 * 1000) {
                 Log.d("MMM", "No image(" + bitmap.allocationByteCount + ")")
                 return@Thread
             }
             val timeStr = SimpleDateFormat("ddHHmm", Locale.getDefault()).format(Date())
             Log.d("MMM", timeStr)
 
-            val newBitmap = Bitmap.createBitmap(750, 1100, Bitmap.Config.ARGB_8888)
+            val newBitmap = Bitmap.createBitmap(1500, 2200, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(newBitmap)
-            canvas.drawRect(0f, 0f, 750f, 1100f, Paint().apply { color = Color.BLACK })
-            canvas.drawBitmap(bitmap, 100f, 275f,
+            canvas.drawRect(0f, 0f, 1500f, 2200f, Paint().apply { color = Color.BLACK })
+            canvas.drawBitmap(bitmap, 200f, 550f,
                 Paint().apply {
                     // 增加亮度
                     val floatArray = FloatArray(20)
@@ -50,8 +50,8 @@ class AlarmReceiver : BroadcastReceiver() {
                     colorFilter = ColorMatrixColorFilter(floatArray)
                 }
             )
-            canvas.drawText(timeStr, 350f, 850f,
-                Paint().apply { color = Color.WHITE;alpha = 40;textSize = 14f }
+            canvas.drawText(timeStr, 700f, 1700f,
+                Paint().apply { color = Color.WHITE;alpha = 40;textSize = 28f }
             )
             val cacheDir = context?.cacheDir
             val file = File(cacheDir, "earth.png")

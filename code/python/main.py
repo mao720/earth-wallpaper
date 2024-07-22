@@ -3,9 +3,11 @@ import os
 import time
 import urllib.request
 
+import numpy
 import oss2
 import win32con
 import win32gui
+from PIL import Image
 
 bucket = oss2.Bucket
 
@@ -44,11 +46,31 @@ def start():
     minute = time_now.minute // 10 * 10
     minute = f'{minute}' if minute >= 10 else f'0{minute}'
 
-    url = fr'https://xxx/{year}/{month}/{day}/{hour}{minute}00_0_0.png'
+    url_0_0 = fr'https://xxx/2d/550/{year}/{month}/{day}/{hour}{minute}00_0_0.png'
+    url_1_0 = fr'https://xxx/2d/550/{year}/{month}/{day}/{hour}{minute}00_1_0.png'
+    url_0_1 = fr'https://xxx/2d/550/{year}/{month}/{day}/{hour}{minute}00_0_1.png'
+    url_1_1 = fr'https://xxx/2d/550/{year}/{month}/{day}/{hour}{minute}00_1_1.png'
+    file_path_0_0 = fr'{os.getcwd()}\earth_0_0.png'
+    file_path_1_0 = fr'{os.getcwd()}\earth_1_0.png'
+    file_path_0_1 = fr'{os.getcwd()}\earth_0_1.png'
+    file_path_1_1 = fr'{os.getcwd()}\earth_1_1.png'
+    download_png(url_0_0, file_path_0_0)
+    download_png(url_1_0, file_path_1_0)
+    download_png(url_0_1, file_path_0_1)
+    download_png(url_1_1, file_path_1_1)
 
+    image_0_0 = numpy.array(Image.open(file_path_0_0).convert(mode='RGB'))
+    image_1_0 = numpy.array(Image.open(file_path_1_0).convert(mode='RGB'))
+    image_0_1 = numpy.array(Image.open(file_path_0_1).convert(mode='RGB'))
+    image_1_1 = numpy.array(Image.open(file_path_1_1).convert(mode='RGB'))
+
+    row_0 = numpy.concatenate([image_0_0, image_1_0], axis=1)
+    row_1 = numpy.concatenate([image_0_1, image_1_1], axis=1)
+    image = Image.fromarray(numpy.concatenate([row_0, row_1], axis=0))
     file_path = fr'{os.getcwd()}\earth.png'
-    download_png(url, file_path)
-    if os.stat(file_path).st_size > 10 * 1000:
+    image.save(file_path)
+
+    if os.stat(file_path).st_size > 40 * 1000:
         print(f'New image：{year}-{month}-{day} {hour}:{minute} UTC')
         set_background(file_path)
         upload_oss(file_path)
