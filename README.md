@@ -21,8 +21,3 @@ Set real-time photos of the Eastern Hemisphere of the Earth as wallpapers for bo
 ## 数据来源 Data sources
 
 http://himawari8.nict.go.jp
-
-
-## 联系方式 Contact me
-
-Email: 1009935357@qq.com (同时也是 QQ 号)
